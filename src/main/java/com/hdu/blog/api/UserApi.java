@@ -1,7 +1,8 @@
 package com.hdu.blog.api;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.hdu.blog.annotation.CurrentUser;
+import com.hdu.blog.annotation.LoginRequired;
 import com.hdu.blog.model.User;
 import com.hdu.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class UserApi {
 		}
 		return userService.add(user);
 	}
-	@GetMapping("/test")
-	public int testErroe(){
-		return 9/0;
-	}
+	@LoginRequired
+    @GetMapping("/test")
+    public Object testCurrentUser(@CurrentUser User user) {
+        return user;
+    }
 }
