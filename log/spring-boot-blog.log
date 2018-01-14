@@ -1,8 +1,0 @@
-2017-05-09 09:41:02 [restartedMain] INFO  c.h.blog.SpringBootBlogApplication : 
- Starting SpringBootBlogApplication on TVTU3D4Z5BGVDD9 with PID 5628 (D:\localgit\spring-boot-blog\target\classes started by Administrator in D:\localgit\spring-boot-blog) 
-2017-05-09 09:41:02 [restartedMain] DEBUG c.h.blog.SpringBootBlogApplication : 
- Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE 
-2017-05-09 09:41:02 [restartedMain] INFO  c.h.blog.SpringBootBlogApplication : 
- No active profile set, falling back to default profiles: default 
-2017-05-09 09:41:11 [restartedMain] INFO  c.h.blog.SpringBootBlogApplication : 
- Started SpringBootBlogApplication in 10.448 seconds (JVM running for 12.066) 
