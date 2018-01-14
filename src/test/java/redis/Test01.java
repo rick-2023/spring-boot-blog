@@ -1,0 +1,119 @@
+package redis;
+
+import org.junit.Before;
+import org.junit.Test;
+import redis.clients.jedis.Jedis;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author 范正荣
+ * @Date 2017/11/14 0014 21:13.
+ */
+public class Test01 {
+    private Jedis jedis;
+
+    @Before
+    public void setJedis() {
+        jedis = new Jedis("localhost");
+        System.out.println("服务连接成功");
+    }
+
+    @Test
+    public void testString() {
+        jedis.set("name", "fan");
+        System.out.println("拼接前:" + jedis.get("name"));
+
+        jedis.append("name", " is my name");
+        System.out.println("拼接后:" + jedis.get("name"));
+
+        jedis.del("name");
+        System.out.println("删除后:" + jedis.get("name"));
+
+        jedis.mset("age", "20", "sex", "male");
+        jedis.incr("age");
+        System.out.println("age=" + jedis.get("age"));
+    }
+
+    @Test
+    public void testMap() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("name", "chx");
+        map.put("age", "100");
+        map.put("email", "***@outlook.com");
+        jedis.hmset("user", map);
+        List list = jedis.hmget("user", "name", "age", "email");
+        System.out.println(list);
+
+        jedis.hdel("user", "age");
+        System.out.println("age:" + jedis.hmget("user", "age"));
+        System.out.println("user的键中存放的值的个数:" + jedis.hlen("user"));
+        System.out.println("是否存在key为user的记录:" + jedis.exists("user"));
+        System.out.println("user对象中的所有key:" + jedis.hkeys("user"));
+        System.out.println("user对象中的所有value:" + jedis.hvals("user"));
+
+        //迭代器
+        Iterator<String> iterator = jedis.hkeys("user").iterator();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            System.out.println(key + "：" + jedis.hmget("user", key));
+        }
+
+        jedis.del("user");
+        System.out.println("删除后是否存在key为user的记录:" + jedis.exists("user"));
+    }
+
+    @Test
+    public void testList() {
+        jedis.del("javaFramwork");
+        //存放数据
+        jedis.lpush("javaFramework", "spring");
+        jedis.lpush("javaFramework", "springMVC");
+        jedis.lpush("javaFramework", "mybatis");
+        //取出所有数据,jedis.lrange是按范围取出
+        //第一个是key，第二个是起始位置，第三个是结束位置
+        System.out.println("长度:" + jedis.llen("javaFramework"));
+        //jedis.llen获取长度，-1表示取得所有
+        System.out.println("javaFramework:" + jedis.lrange("javaFramework", 0, -1));
+
+        jedis.del("javaFramework");
+        System.out.println("删除后长度:" + jedis.llen("javaFramework"));
+        System.out.println(jedis.lrange("javaFramework", 0, -1));
+    }
+
+    @Test
+    public void testSet() {
+        jedis.sadd("user", "chenhaoxiang");
+        jedis.sadd("user", "hu");
+        jedis.sadd("user", "chen");
+        jedis.sadd("user", "xiyu");
+        jedis.sadd("user", "chx");
+        jedis.sadd("user", "are");
+
+        jedis.srem("user", "are");
+        System.out.println("user中的value:" + jedis.smembers("user"));
+        System.out.println("chx是否是user中的元素:" + jedis.sismember("user", "chx"));//判断chx是否是user集合中的元素
+        System.out.println("集合中的一个随机元素:" + jedis.srandmember("user"));//返回集合中的一个随机元素
+        System.out.println("user中元素的个数:" + jedis.scard("user"));//返回集合中的长度
+    }
+
+    /*排序*/
+    @Test
+    public void test() {
+        jedis.del("number");//先删除数据，再进行测试
+        jedis.rpush("number", "4");//将一个或多个值插入到列表的尾部(最右边)
+        jedis.rpush("number", "5");
+        jedis.rpush("number", "3");
+
+        jedis.lpush("number", "9");//将一个或多个值插入到列表头部
+        jedis.lpush("number", "1");
+        jedis.lpush("number", "2");
+        System.out.println(jedis.lrange("number", 0, jedis.llen("number")));
+        System.out.println("排序:" + jedis.sort("number"));
+        System.out.println(jedis.lrange("number", 0, -1));//不改变原来的排序
+        jedis.del("number");//测试完删除数据
+    }
+}

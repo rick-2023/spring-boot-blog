@@ -1,7 +1,5 @@
 package offer66;
 
-import org.junit.Test;
-
 /**
  * Created by Administrator on 2017/7/22 0022.
  * 思路：根据二分查找，找到第一个k与最后一个k的位置
@@ -61,7 +59,7 @@ public class Solution38 {
         return getLastK(data, k, start, end);
     }
 
-    @Test
+
     public void test(){
         int[] data = {1,2,3,3,3,3};
         System.out.println(GetNumberOfK(data,3));
