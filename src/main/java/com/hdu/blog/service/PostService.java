@@ -3,6 +3,7 @@ package com.hdu.blog.service;
 import com.hdu.blog.mapper.PostMapper;
 import com.hdu.blog.model.Post;
 import com.hdu.blog.model.User;
+import org.apache.tomcat.util.net.openssl.OpenSSLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ public class PostService {
 
     @Transactional
     public Post  add(Post post){
+        System.out.println(111);
         postMapper.add(post);
         return findById(post.getId());
     }
