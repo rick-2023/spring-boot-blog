@@ -9,6 +9,7 @@ public class TestCI {
 
   @Test
   public void testName() {
+    System.out.println(111);
     Assert.assertEquals(1, 1);
   }
 
