@@ -1,6 +1,9 @@
 package Company.c51;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author 范正荣

@@ -3,8 +3,9 @@ package com.hdu.blog;
 /**
  * Created by Administrator on 2017/5/9 0009.
  */
-import java.awt.*;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class Draw extends JFrame
 {

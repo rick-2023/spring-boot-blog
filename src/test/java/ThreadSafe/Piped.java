@@ -1,6 +1,8 @@
 package ThreadSafe;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PipedReader;
+import java.io.PipedWriter;
 
 /**
  * @author 范正荣

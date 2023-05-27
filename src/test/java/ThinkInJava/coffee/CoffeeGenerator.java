@@ -2,7 +2,8 @@
 // Generate different types of Coffee:
 package ThinkInJava.coffee;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Random;
 
 
 public class CoffeeGenerator
