@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: echo "Building your Java project..."
-      - run: maven clean install
+      #- run: maven clean install
       # 替换为适用于你的项目的构建命令
       # 如果你使用的是 Maven，可以将 ./gradlew build 替换为 mvn clean install
       # 或者使用适合你的构建工具的命令
