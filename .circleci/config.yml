@@ -5,10 +5,13 @@ jobs:
       - $MAVEN_HOME/bin/mvn clean
     docker:
       - image: circleci/openjdk:8u181-jdk
+      - image: circleci/mvn:3.8.1
     working_directory: ~/repo
+
     steps:
       - checkout
       - run: echo "Building your Java project..."
+      - run: mvn clean install
       #- run: maven clean install
       # 替换为适用于你的项目的构建命令
       # 如果你使用的是 Maven，可以将 ./gradlew build 替换为 mvn clean install
