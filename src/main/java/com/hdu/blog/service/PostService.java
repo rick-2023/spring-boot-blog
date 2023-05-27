@@ -3,7 +3,6 @@ package com.hdu.blog.service;
 import com.hdu.blog.mapper.PostMapper;
 import com.hdu.blog.model.Post;
 import com.hdu.blog.model.User;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
